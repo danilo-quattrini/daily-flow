@@ -1,0 +1,22 @@
+/*These ones are the styles for the sign-up and sign-in pages header and paragraph.*/
+.signup-header h1{
+    font-family: "Noto Serif Myanmar", serif;
+    font-size: 48px;
+    text-align: center;
+}
+.signup-header p{
+    font-size: 14px;
+    text-align: center;
+}
+/*Style for the logo image*/
+.signup-header img{
+    display: block;
+    margin: 0 auto;
+}
+#email-error{
+    padding-top: 10px;
+}
+
+#email-error img{
+    vertical-align: middle;
+}

@@ -1,0 +1,51 @@
+html
+    head
+        title= 'Sing Up'
+        link(rel='stylesheet', href='../public/css/global.css')
+        link(rel='stylesheet', href='../public/css/sign-up-in.css')
+        link(rel='stylesheet', href='../node_modules/bootstrap/dist/css/bootstrap.css')
+    body
+        div(class='d-flex justify-content-center align-items-center vh-100')
+            div(class='container')
+                div(class='row justify-content-start')
+                    div(class='col-md-4')
+                        div(class='signup-header mb-5')
+                            img(src='../public/img/svg/web-site-logo.svg' class='img-fluid mb-5', alt='Web site logo')
+                            h1 Welcome back
+                            p Enter your details to create an account
+                        form(method='post', action='/signup')
+
+                            // Name and Surname on the same row
+                            div(class='row mb-2')
+                                div(class='col-md-6')
+                                    label(for='name', class='form-label fw-medium') Name
+                                    input(type='text', name='name', id='name', class='form-control fw-light px-3 py-1 px-3 py-3', placeholder='Enter your name')
+                                div(class='col-md-6')
+                                    label(for='surname', class='form-label fw-medium') Surname
+                                    input(type='text', name='surname', id='surname', class='form-control fw-light px-3 py-1 px-3 py-3', placeholder='Enter your surname')
+
+                            // Email input
+                            p(class='mb-3')
+                                label(for='email', class='form-label fw-medium') Email
+                                input(type='text', name='email', id='email', onchange="checkEmail()",  class='form-control fw-light px-3 py-1 px-3 py-3', placeholder='Enter your email')
+                                div(style='margin-top: -5px')
+                                    span(id='email-error', class='text-danger fw-light' style='padding-top: 10px')
+
+                            // Password input
+                            label(for='password', class='form-label fw-medium mb-2') Password
+                            div(class='input-group')
+                                input(type='password', name='password', id='password', class='form-control  fw-light px-3 py-2 px-3 py-3 border-end-0', placeholder='Enter your password')
+                                span(class='input-group-text bg-transparent border-start-0')
+                                    img(src='/public/img/svg/eye.svg', alt='password field', id="eyeOpen", onclick="showPassword()",  width='20', height='21')
+
+                            // Submit button
+                            div(class='row my-3')
+                                div(class='col-md-12 d-grid gap-2 mx-auto')
+                                        input(type='submit', value='Sign Up', class='btn btn-dark fw-medium px-3 py-2 py-3')
+                                        p(class='text-center mt-3')
+                                            span(class='fw-light') Already have an account?
+                                            a(href='/signin' class='fw-medium link-dark link-underline link-underline-opacity-0')  Sign in
+
+
+        script(src='/public/js/check-values.js')
+        script(src='<script src="https://cdnjs.cloudflare.com/ajax/libs/validator/13.9.0/validator.min.js')

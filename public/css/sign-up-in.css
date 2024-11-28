@@ -13,3 +13,10 @@
     display: block;
     margin: 0 auto;
 }
+#email-error{
+    padding-top: 10px;
+}
+
+#email-error img{
+    vertical-align: middle;
+}

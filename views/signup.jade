@@ -16,32 +16,36 @@ html
                         form(method='post', action='/signup')
 
                             // Name and Surname on the same row
-                            div(class='row mb-3')
+                            div(class='row mb-2')
                                 div(class='col-md-6')
                                     label(for='name', class='form-label fw-medium') Name
-                                    input(type='text', name='name', id='name', class='form-control fw-normal px-3 py-2', placeholder='Enter your name')
+                                    input(type='text', name='name', id='name', class='form-control fw-light px-3 py-1 px-3 py-3', placeholder='Enter your name')
                                 div(class='col-md-6')
                                     label(for='surname', class='form-label fw-medium') Surname
-                                    input(type='text', name='surname', id='surname', class='form-control fw-normal px-3 py-2', placeholder='Enter your surname')
+                                    input(type='text', name='surname', id='surname', class='form-control fw-light px-3 py-1 px-3 py-3', placeholder='Enter your surname')
 
                             // Email input
                             p(class='mb-3')
                                 label(for='email', class='form-label fw-medium') Email
-                                input(type='text', name='email', id='email', class='form-control fw-normal px-3 py-2', placeholder='Enter your email')
+                                input(type='text', name='email', id='email', onchange="checkEmail()",  class='form-control fw-light px-3 py-1 px-3 py-3', placeholder='Enter your email')
+                                div(style='margin-top: -5px')
+                                    span(id='email-error', class='text-danger fw-light' style='padding-top: 10px')
 
                             // Password input
                             label(for='password', class='form-label fw-medium mb-2') Password
                             div(class='input-group')
-                                input(type='password', name='password', id='password', class='form-control  fw-normal px-3 py-2 border-end-0', placeholder='Enter your password')
+                                input(type='password', name='password', id='password', class='form-control  fw-light px-3 py-2 px-3 py-3 border-end-0', placeholder='Enter your password')
                                 span(class='input-group-text bg-transparent border-start-0')
-                                    img(src='../public/img/svg/vuesax/linear/vuesax/linear/eye.svg', alt='Show password', width='20', height='21')
+                                    img(src='/public/img/svg/vuesax/linear/vuesax/linear/eye.svg', alt='password field', id="eyeOpen", onclick="showPassword()",  width='20', height='21')
 
                             // Submit button
                             div(class='row my-3')
                                 div(class='col-md-12 d-grid gap-2 mx-auto')
-                                        input(type='submit', value='Sign Up', class='btn btn-dark fw-medium px-3 py-2')
+                                        input(type='submit', value='Sign Up', class='btn btn-dark fw-medium px-3 py-2 py-3')
                                         p(class='text-center mt-3')
                                             span(class='fw-light') Already have an account?
                                             a(href='/signin' class='fw-medium link-dark link-underline link-underline-opacity-0')  Sign in
 
 
+        script(src='/public/js/check-values.js')
+        script(src='<script src="https://cdnjs.cloudflare.com/ajax/libs/validator/13.9.0/validator.min.js')

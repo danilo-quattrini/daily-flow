@@ -34,14 +34,27 @@ html
                             // Password input
                             label(for='password', class='form-label fw-medium mb-2') Password
                             div(class='input-group')
-                                input(type='password', name='password', id='password', class='form-control  fw-light px-3 py-2 px-3 py-3 border-end-0', placeholder='Enter your password')
+                                input(type='password', name='password', id='password', oninput="checkStrongPassword()", class='form-control  fw-light px-3 py-2 px-3 py-3 border-end-0', placeholder='Enter your password')
                                 span(class='input-group-text bg-transparent border-start-0')
-                                    img(src='/public/img/svg/eye.svg', alt='password field', id="eyeOpen", onclick="showPassword()",  width='20', height='21')
+                                    img(src='/public/img/svg/eye.svg', alt='password field', id="eyeOpen", onclick="showPassword()", width='20', height='21')
+                            // Password requirements
+                            div(id='password-requirements-list', class='password-requirements mt-3' style='display: none;')
+                                ul(class='list-unstyled fw-light' )
+                                    li(id='length-check') At least 8 characters
+                                    li(id='uppercase-check') At least 1 uppercase letter
+                                    li(id='lowercase-check') At least 1 lowercase letter
+                                    li(id='number-check') At least 1 number
+                                    li(id='special-char-check') At least 1 special character (!@#$%^&*)
+
+                            //Password strength bar
+                            div(id='password-strength-container', class='password-strength-container mt-2', style='display: none;')
+                                div(class='progress')
+                                    div(id='password-strength-bar', class='progress-bar', role='progressbar', aria-valuenow='0', aria-valuemin='0', aria-valuemax='100', style='width: 0%')
 
                             // Submit button
                             div(class='row my-3')
                                 div(class='col-md-12 d-grid gap-2 mx-auto')
-                                        input(type='submit', value='Sign Up', class='btn btn-dark fw-medium px-3 py-2 py-3')
+                                        input(type='submit', value='Sign Up', class='btn btn-dark fw-medium px-3 py-2 py-3', id='submit-button', disabled)
                                         p(class='text-center mt-3')
                                             span(class='fw-light') Already have an account?
                                             a(href='/signin' class='fw-medium link-dark link-underline link-underline-opacity-0')  Sign in

@@ -1,6 +1,8 @@
 {
   "dependencies": {
+    "body-parser": "^1.20.3",
     "bootstrap": "^5.3.3",
+    "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "http": "^0.0.1-security",
     "install": "^0.13.0",
@@ -8,6 +10,17 @@
     "merge-descriptors": "^1.0.3",
     "mongodb": "^6.11.0",
     "mys": "^1.0.1",
-    "mysql": "^2.18.1"
-  }
+    "mysql": "^2.18.1",
+    "mysql2": "^3.11.5"
+  },
+  "name": "habit-tracker",
+  "version": "1.0.0",
+  "description": "Project for the course Advanced Web Technology, this one is going to use all the resources that we learn during this course like NodeJS, Express, MongoDB and more.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

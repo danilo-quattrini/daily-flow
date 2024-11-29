@@ -16,7 +16,7 @@ function checkEmail() {
         emailInput.classList.remove('is-invalid');
         return true;
     } else {
-        emailError.innerHTML = '<img src="/public/img/svg/x-circle.svg" alt="Error" width="18" height="18"/> Email is not valid';
+        emailError.innerHTML = '<img src="/img/svg/x-circle.svg" alt="Error" width="18" height="18"/> Email is not valid';
         emailInput.classList.add('is-invalid');
         return false;
     }

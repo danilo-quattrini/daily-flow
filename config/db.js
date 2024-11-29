@@ -1,15 +1,8 @@
 //Import the mysql module
 const mysql = require('mysql2');
-//Import and instance the server module
-const server = require('express');
-const app = server();
 
-//require the dotenv module
+//Import the dotenv module
 require('dotenv').config();
-
-//Create the connection and pass in the environment variables
-const port = process.env.PORT;
-
 //Create a connection object with the user details
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
@@ -19,16 +12,16 @@ const db = mysql.createConnection({
 });
 
 //Test if the connection is successful
-db.connect((err) => {
-    if (err) {
-        console.log('Error connecting to Db ⤬');
-        return err;
-    }
-    console.log('Connection established ✔');
-});
+const connectionToDB = function testConnection(){
+    db.connect((err) => {
+        if (err) {
+            console.log('Error connecting to db ⤬', err);
+            return err;
+        }
+        console.log('Connection to db established ✔');
+    });
+}
 
-app.listen(port, () => {
-    console.log(`Server open on port http://localhost:${port}`);
-});
+
 //Export the connection object so that it can be used in other modules
 module.exports = db;

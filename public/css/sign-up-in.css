@@ -8,15 +8,66 @@
     font-size: 14px;
     text-align: center;
 }
+
 /*Style for the logo image*/
 .signup-header img{
     display: block;
     margin: 0 auto;
 }
+
+/*These are the styles for the email form*/
 #email-error{
     padding-top: 10px;
 }
 
 #email-error img{
     vertical-align: middle;
+}
+
+/*Style for the progress bar*/
+.password-strength-container {
+    height: fit-content;
+    width: 100%;
+}
+
+.progress {
+    height: 3px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+/*Style for requirement list for the password*/
+.password-requirements {
+    font-size: 14px;
+}
+
+.password-requirements ul {
+    padding: 0;
+    margin: 0;
+}
+
+.password-requirements li {
+    margin-bottom: 5px;
+    color: #ff4d4f; /* Red for invalid */
+    transition: color 0.3s ease-in-out;
+}
+
+.password-requirements li.valid {
+    color: #52c41a; /* Green for valid */
+}
+
+.password-requirements li.invalid {
+    color: #ff4d4f; /* Red for invalid */
+}
+
+/*Style for the disable submit button*/
+#submit-btn:disabled {
+    background-color: #d3d3d3; /* Light gray background */
+    color: #6c757d; /* Gray text */
+    cursor: not-allowed;
 }

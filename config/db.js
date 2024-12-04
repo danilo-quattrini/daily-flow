@@ -12,15 +12,13 @@ const db = mysql.createConnection({
 });
 
 //Test if the connection is successful
-const connectionToDB = function testConnection(){
-    db.connect((err) => {
+db.connect((err) => {
         if (err) {
             console.log('Error connecting to db ⤬', err);
             return err;
         }
         console.log('Connection to db established ✔');
-    });
-}
+});
 
 
 //Export the connection object so that it can be used in other modules

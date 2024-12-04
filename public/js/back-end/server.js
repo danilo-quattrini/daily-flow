@@ -17,7 +17,7 @@ app.set('views', path.join(__dirname, '../../../views'));
 app.use('/public', express.static(path.join(__dirname, "../../../public"))); // <- this line will us public directory as your static assets
 // Serve static files from 'node_modules'
 app.use('/node_modules', express.static(path.join(__dirname, "../../../node_modules"))); // <- this line will us public directory as your static assets
-// Routes
+// Display the signup form inside the server
 app.get('/', (req, res) => res.redirect('/signup'));
 app.get('/signup', (req, res) => res.render('signup'));
 

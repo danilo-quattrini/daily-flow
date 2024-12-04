@@ -1,7 +1,5 @@
 // Initiate connection to the server
-const app = require('/config/server.js');
-// Initiate connection to database
-const connection = require('/config/db.js');
+const app = require('../../../config/server.js');
 
 // Import the function to read data from the html form
 const bodyParser = require('body-parser');

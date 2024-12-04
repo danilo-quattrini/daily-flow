@@ -14,7 +14,7 @@ html
                             img(src='../public/img/svg/web-site-logo.svg' class='img-fluid mb-5', alt='Web site logo')
                             h1 Hy, good to see you
                             p Enter your details to create an account
-                        form(method='POST', action='/sign-in')
+                        form(method='POST', action='/signup')
 
                             // Name and Surname on the same row
                             div(class='row mb-2')
@@ -58,7 +58,6 @@ html
                                         input(type='submit', value='Sign Up', class='btn btn-dark fw-medium px-3 py-2 py-3', id='submit-button', disabled)
                                         p(class='text-center mt-3')
                                             span(class='fw-light') Already have an account?
-                                            a(href='/sign-in' class='fw-medium link-dark link-underline link-underline-opacity-0')  Sign in
-
+                                            a(href='/sign-in' class='fw-medium link-dark link-underline link-underline-opacity-0')  Sign <in></in>
         script(src='../public/js/check-values.js')
         script(src='../public/js/form-validator-sign-up.js')

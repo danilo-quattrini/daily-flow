@@ -21,7 +21,43 @@ exports.signup = (req, res) => {
             }
 
             // Redirect to the signin page after successful signup
-            res.redirect('/signin');
+            res.redirect('/sign-in');
+            console.log('User signed up and added to the database');
         });
     });
 };
+
+// Signin Controller
+exports.signin = (req, res) => {
+    const { email, password } = req.body;
+
+    // Check if the user exists
+    const sql = 'SELECT * FROM app_users WHERE email = ?';
+    db.query(sql, [email], (err, results) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Error retrieving data from the database');
+        }
+
+        // Check if the user exists
+        if (results.length === 0) {
+            return res.status(404).send('User not found');
+        }
+
+        // Check if the password is correct
+        bcrypt.compare(password, results[0].password, (err, result) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('Error comparing passwords');
+            }
+
+            if (!result) {
+                return res.status(401).send('Incorrect password');
+            }
+
+            // Redirect to the dashboard after successful signin
+            //res.redirect('/dashboard');
+            console.log('User signed in');
+        });
+    });
+}

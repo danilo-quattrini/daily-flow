@@ -16,10 +16,13 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 // Middleware for parsing form data
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 // Serve static files from 'public'
 app.use('/public', express.static(path.join(__dirname, 'public')));
 // Serve static files from 'node_modules'
 app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
+
+
 // Import routes
 const authRoutes = require('./back-end/auth-route.js');
 app.use('/', authRoutes);  // Use the routes

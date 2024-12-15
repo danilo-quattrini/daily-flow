@@ -31,33 +31,38 @@ exports.signup = (req, res) => {
 exports.signin = (req, res) => {
     const { email, password } = req.body;
 
-    // Check if the user exists
-    const sql = 'SELECT * FROM app_users WHERE email = ?';
-    db.query(sql, [email], (err, results) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).send('Error retrieving data from the database');
-        }
-
-        // Check if the user exists
-        if (results.length === 0) {
-            return res.status(404).send('User not found');
-        }
-
-        // Check if the password is correct
-        bcrypt.compare(password, results[0].password, (err, result) => {
+    try {
+        // Query the database for the user by email
+        db.query('SELECT * FROM app_users WHERE email = ?', [email], (err, results) => {
             if (err) {
                 console.error(err);
-                return res.status(500).send('Error comparing passwords');
+                return res.status(500).json({ message: 'Server error' });
             }
 
-            if (!result) {
-                return res.status(401).send('Incorrect password');
+            if (results.length === 0) {
+                // User does not exist
+                return res.status(404).json({ message: 'User not found' });
             }
 
-            // Redirect to the dashboard after successful signin
-            //res.redirect('/dashboard');
-            console.log('User signed in');
+            // Compare the password with the hashed password in the database
+            const user = results[0];
+            bcrypt.compare(password, user.password, (err, isMatch) => {
+                if (err) {
+                    console.error(err);
+                    return res.status(500).json({ message: 'Server error' });
+                }
+
+                if (!isMatch) {
+                    // Password does not match
+                    return res.status(401).json({ message: 'Invalid credentials' });
+                }
+
+                // User exists and password is correct
+                return res.status(200).json({ message: 'Sign-in successful' });
+            });
         });
-    });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
+    }
 }

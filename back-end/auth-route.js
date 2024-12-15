@@ -15,7 +15,7 @@ router.get('/sign-in', (req, res) => res.render('sign-in'));
 router.post('/signup', authController.signup);
 
 // Route to handle form submission and check if the user exist inside the db (POST request)
-router.post('/signin', authController.signin);
+router.post('/sign-in', authController.signin);
 
 // Export the router
 module.exports = router;

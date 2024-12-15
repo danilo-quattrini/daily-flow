@@ -5,10 +5,11 @@ html
         link(rel='stylesheet', href='../public/css/global.css')
         link(rel='stylesheet', href='../public/css/sign-up-in.css')
         link(rel='stylesheet', href='../node_modules/bootstrap/dist/css/bootstrap.css')
+        link(rel='icon', type='image/x-icon', href='../public/img/web-site-icon.ico')
     body
         div(class='d-flex justify-content-center align-items-center vh-100')
             div(class='container')
-                div(class='row justify-content-start')
+                div(class='row justify-content-center')
                     div(class='col-md-4')
                         div(class='signup-header mb-5')
                             img(src='../public/img/svg/web-site-logo.svg' class='img-fluid mb-5', alt='Web site logo')
@@ -39,7 +40,7 @@ html
                                 span(class='input-group-text bg-transparent border-start-0')
                                     img(src='/public/img/svg/eye.svg', alt='password field', id="eyeOpen", onclick="showPassword()", width='20', height='21')
                             // Password requirements
-                            div(id='password-requirements-list', class='password-requirements mt-3' style='display: none;')
+                            div(id='password-requirements-list', class='password-requirements mt-3', style='display: none;')
                                 ul(class='list-unstyled fw-light' )
                                     li(id='length-check') At least 8 characters
                                     li(id='uppercase-check') At least 1 uppercase letter

@@ -5,10 +5,11 @@ html
         link(rel='stylesheet', href='../public/css/global.css')
         link(rel='stylesheet', href='../public/css/sign-up-in.css')
         link(rel='stylesheet', href='../node_modules/bootstrap/dist/css/bootstrap.css')
+        link(rel='icon', type='image/x-icon', href='../public/img/web-site-icon.ico')
     body
         div(class='d-flex justify-content-center align-items-center vh-100')
             div(class='container')
-                div(class='row justify-content-start')
+                div(class='row justify-content-center')
                     div(class='col-md-4')
                         div(class='signup-header mb-5')
                             img(src='../public/img/svg/web-site-logo.svg' class='img-fluid mb-5', alt='Web site logo')
@@ -26,6 +27,13 @@ html
                                 input(type='password', name='password', id='password', oninput="checkStrongPassword()", class='form-control  fw-light px-3 py-2 px-3 py-3 border-end-0', placeholder='Enter your password')
                                 span(class='input-group-text bg-transparent border-start-0')
                                     img(src='/public/img/svg/eye.svg', alt='password field', id="eyeOpen", onclick="showPassword()", width='20', height='21')
+
+                            // Adding the pop-up that will show that the user does not exist
+                            div(class='alert alert-danger d-flex mt-3 align-items-center d-none', role='alert', id='userNotExist')
+                                img(src='../public/img/svg/exclamation-triangle.svg', class='me-2', role='img', width='20', height='20' aria-label='Danger:')
+                                span(class='fw-light m-0 align-items-center') User does not exist or password is incorrect
+
+
                             // Submit button
                             div(class='row my-3')
                                 div(class='col-md-12 d-grid gap-2 mx-auto')
@@ -35,4 +43,5 @@ html
                                             a(href='/signup' class='fw-medium link-dark link-underline link-underline-opacity-0')  Sign up
 
         script(src='/public/js/check-values.js')
+        script(src='/public/js/existing-user.js')
         script(src='/public/js/form-validator-sign-in.js')

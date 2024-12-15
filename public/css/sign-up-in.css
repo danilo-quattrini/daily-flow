@@ -71,3 +71,8 @@
     color: #6c757d; /* Gray text */
     cursor: not-allowed;
 }
+
+/*Style for the eye cursor on*/
+#eyeOpen{
+    cursor: pointer;
+}

@@ -11,6 +11,9 @@ router.get('/signup', (req, res) => res.render('signup'));
 // Route to render the signin form
 router.get('/sign-in', (req, res) => res.render('sign-in'));
 
+// Route to render the dashboard
+router.get('/dashboard', (req, res) => res.render('dashboard'));
+
 // Route to handle form submission (POST request)
 router.post('/signup', authController.signup);
 

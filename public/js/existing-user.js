@@ -1,4 +1,4 @@
-function checkUserExistance() {
+function checkUserExistence() {
     document.querySelector('form').addEventListener('submit', async function(event) {
         event.preventDefault(); // Prevent the default form submission
 
@@ -28,13 +28,13 @@ function checkUserExistance() {
                 document.getElementById('userNotExist').classList.add('d-block');
                 document.getElementById('userNotExist').classList.remove('d-none');
             } else if (response.status === 200) {
-                console.log('User found'); // Debug log
                 // Sign-in successful, hide the error message if it's visible
                 document.getElementById('userNotExist').classList.add('d-none');
                 document.getElementById('userNotExist').classList.remove('d-block');
 
-                // Redirect or perform additional actions on successful sign-in
-                window.location.href = '/sign-in'; // Example redirection after success
+                // Redirect to the dashboard page
+                window.location.href = '/dashboard';
+
             } else if (response.status === 401) {
                 // Invalid credentials (wrong password)
                 document.getElementById('userNotExist').classList.add('d-block');
@@ -49,4 +49,4 @@ function checkUserExistance() {
 }
 
 // Initialize the function
-checkUserExistance();
+checkUserExistence();

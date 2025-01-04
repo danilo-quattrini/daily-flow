@@ -1,3 +1,10 @@
 *{
     font-family: 'Inter', sans-serif;
 }
+h1{
+    font-family: "Noto Serif Myanmar", serif;
+    font-size: 48px;
+}
+p{
+    font-size: 14px;
+}

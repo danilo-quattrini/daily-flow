@@ -14,7 +14,7 @@ exports.signup = async (req, res) => {
 
         // Insert the user into the database
         const sql = 'INSERT INTO app_users (name, surname, email, password) VALUES (?, ?, ?, ?)';
-        db.query(sql, [name, surname, email, hash], (err, result) => {
+        db.query(sql, [name, surname, email, hash], (err, res) => {
             if (err) {
                 if (err.code === 'ER_DUP_ENTRY') {
                     return res.status(400).send('Email already exists');

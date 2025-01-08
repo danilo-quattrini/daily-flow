@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify(habitData),
             });
 
-            if (!response.ok) throw new Error('Failed to add habit');
+            if (!response.ok)  new Error('Failed to add habit');
 
             // Get the newly created habit
             const newHabit = await response.json();

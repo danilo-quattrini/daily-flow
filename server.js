@@ -1,5 +1,6 @@
 //Import the necessary modules
 const express = require('express');
+const session = require('express-session');
 const path = require('path');
 require('dotenv').config({ path: ('./config/.env') });
 
@@ -22,6 +23,13 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 // Serve static files from 'node_modules'
 app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
 
+// Middleware for session
+app.use(session({
+    secret: process.env.SESSION_SECRET,  // Replace with a strong secret key
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false }  // Set true if using HTTPS
+}));
 
 // Import routes
 const authRoutes = require('./back-end/auth-route.js');

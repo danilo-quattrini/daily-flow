@@ -2,8 +2,9 @@ doctype
 html
     head
         title= 'Dashboard'
-        link(rel='stylesheet', href='../public/css/global.css')
+        link(rel='stylesheet', href='/public/css/global.css')
         link(rel='stylesheet', href='../public/css/dashboard.css')
+        link(rel='stylesheet', href='../public/css/pop-up.css')
         link(rel='stylesheet', href='../node_modules/bootstrap/dist/css/bootstrap.css')
         link(rel='icon', type='image/x-icon', href='../public/img/web-site-icon.ico')
 
@@ -34,13 +35,13 @@ html
                         img(src='../public/img/svg/profile.svg', alt='profile icon', class='profile-pict')
 
 
-                .content-grid
+                div(class='content-grid')
                   // Calendar Section
-                  section.calendar
+                  div(class='calendar')
                     .calendar-header
-                      button.previous-month &larr;
-                      h2 January 2023
-                      button.next-month &rarr;
+                      button(id='prevMonth') &larr;
+                      h2(id='monthYear')
+                      button(id='nextMonth') &rarr;
                     table.calendar-table
                       thead
                         tr
@@ -52,22 +53,10 @@ html
                           th Sa
                           th Su
                       tbody
-                        tr
-                          td.blank
-                          td.blank
-                          td.blank
-                          td.blank
-                          td.blank
-                          td 1
-                          td 2
-                        tr
-                          each day in [3, 4, 5, 6, 7, 8, 9]
-                            td= day
-                        // Add rows as needed for the rest of the month
 
                   // Habits Section
-                  section.todays-habits
-                    h2 Today's Habits
+                  div(class='todays-habits')
+                    h1 Today's Habits
                     ul.habit-list
                       li.habit-item
                         .habit-content
@@ -80,26 +69,34 @@ html
                           option(value='done') Done
                           option(value='not-done') Not done
 
-                      li.habit-item
-                        .habit-content
-                          img.habit-icon(src="../public/img/svg/habit-icon.svg" alt="Icon")
-                          .habit-details
-                            span.habit-title Read 10 pages
-                            span.habit-time At 09:00
-                        select.habit-status
-                          option(value='to-do') TO-DO
-                          option(value='done', selected) Done
-                          option(value='not-done') Not done
 
-                      li.habit-item
-                        .habit-content
-                          img.habit-icon(src="../public/img/svg/habit-icon.svg" alt="Icon")
-                          .habit-details
-                            span.habit-title Meditate
-                            span.habit-time At 10:00
-                        select.habit-status
-                          option(value='to-do') TO-DO
-                          option(value='done') Done
-                          option(value='not-done', selected) Not done
+                    button(class='add-habit-button') +
+            //Creating the pop up page for adding a new habit
+            div.popup-overlay.hidden
+              div.popup-container
+                h1 Add a New Habit
+                form#newHabitForm(method='POST' action='/add-habit')
+                  label(for='habitName') Habit Name:
+                  input#habitName(type='text' name='name' required placeholder='Enter habit name')
 
-                    button.add-habit +
+                  label(for='habitFrequency') Frequency:
+                  select#habitFrequency(name='frequency' required)
+                    option(value='daily') Daily
+                    option(value='weekly') Weekly
+                    option(value='monthly') Monthly
+
+                  label(for='startDate') Start Date:
+                  //TODO: Set the current date as the default value
+                  input#startDate(type='date' name='startDate' value='#{currentDate}' required)
+
+                  label(for='time') Time:
+                  input#time(type='time' name='time' required)
+
+                  label(for='progress') Initial Progress:
+                  input#progress(type='number' name='progress' value='0' min='0' max='100' step='1')
+
+                div.popup-footer
+                    button.close-popup Close
+                    button(type='submit') Save Habit
+        script(src='/public/js/calendar-handler.js')
+        script(src='/public/js/pop-up.js')

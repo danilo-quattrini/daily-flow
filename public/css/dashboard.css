@@ -101,7 +101,6 @@
     background-color: #fff;
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .calendar-header {
@@ -114,7 +113,14 @@
 .calendar-header h2 {
     font-size: 1.2rem;
 }
-
+.calendar-header button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: black;
+    transition: color 0.3s;
+}
 .calendar-table {
     width: 100%;
     border-collapse: collapse;
@@ -145,6 +151,7 @@
 
 .habit-list {
     list-style: none;
+    margin: 0;
     padding: 0;
 }
 
@@ -191,7 +198,7 @@
     cursor: pointer;
 }
 
-.add-habit {
+.add-habit-button {
     display: block;
     margin: 20px auto 0;
     width: 50px;
@@ -205,6 +212,6 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.add-habit:hover {
+.add-habit-button:hover {
     background-color: #0056b3;
 }

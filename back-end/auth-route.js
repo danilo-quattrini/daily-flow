@@ -20,5 +20,10 @@ router.post('/signup', authController.signup);
 // Route to handle form submission and check if the user exist inside the db (POST request)
 router.post('/sign-in', authController.signin);
 
+// Route to handle the signout (GET request)
+router.get('/logout', authController.logout);
+
+// Route to handle the add habit (POST request)
+router.post('/add-habit', authController.addHabit);
 // Export the router
 module.exports = router;

@@ -22,7 +22,7 @@ html
                         hr(style='border: 1px solid; color: #011524;')
                         li
                             img(src='../public/img/svg/logout.svg', alt='logout icon')
-                            a(href='/sign-in') Logout
+                            a(href='/logout') Logout
             // Main Section
             main(class='main-content')
                 header(class='header')
@@ -75,7 +75,7 @@ html
             div.popup-overlay.hidden
               div.popup-container
                 h1 Add a New Habit
-                form#newHabitForm(method='POST' action='/add-habit')
+                form#newHabitForm
                   label(for='habitName') Habit Name:
                   input#habitName(type='text' name='name' required placeholder='Enter habit name')
 
@@ -95,8 +95,8 @@ html
                   label(for='progress') Initial Progress:
                   input#progress(type='number' name='progress' value='0' min='0' max='100' step='1')
 
-                div.popup-footer
-                    button.close-popup Close
-                    button(type='submit') Save Habit
+                  div.popup-footer
+                      button.close-popup Close
+                      button(type='submit') Save Habit
         script(src='/public/js/calendar-handler.js')
         script(src='/public/js/pop-up.js')

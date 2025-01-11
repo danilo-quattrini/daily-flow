@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const authController = require('./auth-controller');
+const dashController = require('./dash-controller');
 
 // Route to redirect the root to the signup page
 router.get('/', (req, res) => res.redirect('/signup'));
@@ -24,6 +25,15 @@ router.post('/sign-in', authController.signin);
 router.get('/logout', authController.logout);
 
 // Route to handle the add habit (POST request)
-router.post('/add-habit', authController.addHabit);
+router.post('/add-habit', dashController.addHabit);
+
+// Route to handle the delete habit (POST request)
+router.delete('/delete-habit/:id', dashController.deleteHabit);
+
+// Route to handle the update habit (POST request)
+router.put('/update-habit/:id', dashController.updateHabit);
+
+// Route to handle the get habit (GET request)
+router.get('/get-habit', dashController.getHabit);
 // Export the router
 module.exports = router;

@@ -58,16 +58,7 @@ html
                   div(class='todays-habits')
                     h1 Today's Habits
                     ul.habit-list
-                      li.habit-item
-                        .habit-content
-                          img.habit-icon(src="../public/img/svg/habit-icon.svg" alt="Icon")
-                          .habit-details
-                            span.habit-title Drink water
-                            span.habit-time At 08:00
-                        select.habit-status
-                          option(value='to-do', selected) TO-DO
-                          option(value='done') Done
-                          option(value='not-done') Not done
+
 
 
                     button(class='add-habit-button') +
@@ -88,9 +79,6 @@ html
                   label(for='startDate') Start Date:
                   //TODO: Set the current date as the default value
                   input#startDate(type='date' name='startDate' value='#{currentDate}' required)
-
-                  label(for='time') Time:
-                  input#time(type='time' name='time' required)
 
                   label(for='progress') Initial Progress:
                   input#progress(type='number' name='progress' value='0' min='0' max='100' step='1')

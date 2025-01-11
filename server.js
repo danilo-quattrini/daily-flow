@@ -25,10 +25,13 @@ app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
 
 // Middleware for session
 app.use(session({
-    secret: process.env.SESSION_SECRET,  // Replace with a strong secret key
+    secret: process.env.SESSION_SECRET,  // Replaced with a strong secret key inside the .env
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false }  // Set true if using HTTPS
+    cookie: {
+        maxAge: 5 * 60 * 1000, // Session expires after 5 minutes of inactivity
+        httpOnly: true,
+    }
 }));
 
 // Import routes

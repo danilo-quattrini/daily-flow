@@ -1,6 +1,5 @@
 const bcrypt = require('bcrypt');
 const db = require('../config/db');
-const moment = require("moment");  // Import the database connection
 
 // Signup Controller
 exports.signup = async (req, res) => {
@@ -72,42 +71,15 @@ exports.signin = async (req, res) => {
 
 }
 
+// Logout Controller
 exports.logout = async (req, res) => {
+    console.log('User signed out', req.session.user_id);
     req.session.destroy((err) => {
         if (err) {
             console.error(err);
             return res.status(500).json({ message: 'Server error' });
         }
-        console.log('User signed out');
         return res.redirect('/sign-in');
     });
 };
 
-// Add Habit Controller
-exports.addHabit = async (req, res) => {
-    const {name, frequency, startDate, time, progress} = req.body;
-    const userId = req.session.user_id; // Ensure the user is logged in
-    const createdAT = moment().format('YYYY-MM-DD HH:mm:ss');
-    if (!userId) {
-        return res.status(401).send('Unauthorized. Please log in.');
-    }
-
-    const sql = 'INSERT INTO habits (user_id, habit_name, frequency, start_date, progress, created_at) VALUES (?, ?, ?, ?, ?, ?)';
-    db.query(sql, [userId, name, frequency, startDate, progress,  createdAT], (err, result) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).send('Error adding habit');
-        }
-
-        const newHabit = {
-            id: result.insertId,
-            name,
-            frequency,
-            startDate,
-            progress,
-            time,
-        };
-
-        res.status(201).json(newHabit); // Return the newly created habit
-    });
-};

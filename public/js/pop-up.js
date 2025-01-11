@@ -1,4 +1,39 @@
-document.addEventListener('DOMContentLoaded', () => {
+// Function to add a habit to the list dynamically
+function addHabitToList(habit) {
+    const habitList = document.querySelector('.habit-list'); // Select habit list
+    if (!habitList) {
+        console.error('Habit list element is missing.');
+        return;
+    }
+
+    const li = document.createElement('li');
+    // Attach the habit ID for future reference
+    li.setAttribute('data-id', habit.id);
+    li.classList.add('habit-item');
+    li.innerHTML = `
+    <div class="habit-content">
+      <img class="habit-icon" src="../public/img/svg/habit-icon.svg" alt="Icon">
+      <div class="habit-details">
+        <span class="habit-title">${habit.name}</span>
+        <span class="habit-time">Started At ${habit.time}</span>
+      </div>
+    </div>
+    <select class="habit-status">
+      <option value="to-do" ${habit.progress > 0 ? 'selected' : ''}>TO-DO</option>
+      <option value="done" ${habit.progress === 100 ? 'selected' : ''}>Done</option>
+      <option value="not-done" ${habit.progress !== 100 && habit.progress !== 0 ? 'selected' : ''}>Not done</option>
+    </select>
+    <div class="habit-buttons">
+        <button class="habit-delete-button"><img src="../public/img/svg/delete.svg" alt="Delete"/></button>
+        <button class="habit-edit-button"><img src="../public/img/svg/edit.svg" alt="Edit button"/></button>
+    </div>
+  `;
+    habitList.appendChild(li);
+    li.querySelector('.habit-delete-button').addEventListener('click', () => deleteHabit(habit.id));
+    li.querySelector('.habit-edit-button').addEventListener('click', () => updateHabit(habit));
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
     const popupOverlay = document.querySelector('.popup-overlay');
     const closePopupBtn = document.querySelector('.close-popup');
     const addHabitBtn = document.querySelector('.add-habit-button'); // Trigger button
@@ -9,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('One or more required elements are missing.');
         return;
     }
+
     // Open the popup
     addHabitBtn.addEventListener('click', () => {
         popupOverlay.classList.remove('hidden');
@@ -37,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify(habitData),
             });
 
-            if (!response.ok)  new Error('Failed to add habit');
+            if (!response.ok) throw new Error('Failed to add habit');
 
             // Get the newly created habit
             const newHabit = await response.json();
@@ -48,31 +84,32 @@ document.addEventListener('DOMContentLoaded', () => {
             // Reset the form and close the pop-up
             newHabitForm.reset();
             popupOverlay.classList.add('hidden');
-        }catch (error) {
+        } catch (error) {
             console.error('Error:', error);
             alert('Failed to add habit. Please try again.');
         }
     });
 
+    // Fetch habits for the logged-in user
+    try {
+        console.log('Fetching habits...');
+        const response = await fetch('/get-habit');
+        if (!response.ok) {
+            console.error('Failed to fetch habits:', response.statusText);
+            throw new Error('Failed to fetch habits');
+        }
 
-    // Function to add a habit to the list dynamically
-    function addHabitToList(habit) {
-        const li = document.createElement('li');
-        li.classList.add('habit-item');
-        li.innerHTML = `
-        <div class="habit-content">
-          <img class="habit-icon" src="../public/img/svg/habit-icon.svg" alt="Icon">
-          <div class="habit-details">
-            <span class="habit-title">${habit.name}</span>
-            <span class="habit-time">At ${habit.time}</span>
-          </div>
-        </div>
-        <select class="habit-status">
-          <option value="to-do" ${habit.progress === 0 ? 'selected' : ''}>TO-DO</option>
-          <option value="done" ${habit.progress === 100 ? 'selected' : ''}>Done</option>
-          <option value="not-done" ${habit.progress !== 100 && habit.progress !== 0 ? 'selected' : ''}>Not done</option>
-        </select>
-      `;
-        habitList.appendChild(li);
+        const habits = await response.json();
+        console.log('Habits fetched:', habits);
+
+        if (!Array.isArray(habits) || habits.length === 0) {
+            console.log('No habits found for the user.');
+            return;
+        }
+
+        habits.forEach(addHabitToList);
+    } catch (error) {
+        console.error('Error loading habits:', error);
+        alert('Failed to load habits. Please try again.');
     }
 });

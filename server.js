@@ -36,7 +36,10 @@ app.use(session({
 
 // Import routes
 const authRoutes = require('./back-end/auth-route.js');
+const dashRoutes = require('./back-end/dash-route.js');
+
 app.use('/', authRoutes);  // Use the routes
+app.use('/dashboard', dashRoutes);  // Use the routes
 
 // Start the server
 const port = process.env.PORT;

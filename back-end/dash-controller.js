@@ -32,42 +32,54 @@ exports.addHabit = async (req, res) => {
 // Delete Habit Controller
 exports.deleteHabit = async (req, res) => {
     const { habitId } = req.body;
-    const userId = req.session.user_id; // Ensure the user is logged in
+    const userId = req.session.user_id;
+
+    console.log('Delete Habit:', { habitId, userId });
 
     if (!userId) {
         return res.status(401).send('Unauthorized. Please log in.');
+    }
+    if (!habitId) {
+        return res.status(400).send('Habit ID is required.');
     }
 
     const sql = 'DELETE FROM habits WHERE habit_id = ? AND user_id = ?';
     db.query(sql, [habitId, userId], (err, result) => {
         if (err) {
-            console.error(err);
+            console.error('Delete Error:', err);
             return res.status(500).send('Error deleting habit');
         }
 
-        res.status(200).send('Habit deleted successfully');
+        console.log('Delete Result:', result);
+        res.status(200).send(result);
     });
 };
 
 // Update Habit Controller
+/*
 exports.updateHabit = async (req, res) => {
-    const { habitId, progress } = req.body;
+    const habitId = req.params.id; // Retrieve id from params
+    const { name, frequency, startDate, progress, time } = req.body;
     const userId = req.session.user_id; // Ensure the user is logged in
+
+    console.log('Update Habit:', { habitId, name, frequency, startDate, progress, time });
 
     if (!userId) {
         return res.status(401).send('Unauthorized. Please log in.');
     }
 
-    const sql = 'UPDATE habits SET progress = ? WHERE habit_id = ? AND user_id = ?';
-    db.query(sql, [progress, habitId, userId], (err, res) => {
+    const sql = 'UPDATE habits SET habit_name = ?, frequency = ?, start_date = ?, progress = ?, time = ? WHERE habit_id = ? AND user_id = ?';
+    db.query(sql, [name, frequency, startDate, progress, time, habitId, userId], (err, result) => {
         if (err) {
-            console.error(err);
+            console.error('Update Error:', err);
             return res.status(500).send('Error updating habit');
         }
 
+        console.log('Update Result:', result);
         res.status(200).send('Habit updated successfully');
     });
 };
+*/
 
 // Get Habit Controller
 exports.getHabit = async (req, res) => {

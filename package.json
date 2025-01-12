@@ -6,6 +6,7 @@
     "bootstrap": "^5.3.3",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
+    "express-mysql-session": "^3.0.3",
     "express-session": "^1.18.1",
     "install": "^0.13.0",
     "merge-descriptors": "^1.0.3",

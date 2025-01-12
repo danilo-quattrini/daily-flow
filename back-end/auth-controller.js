@@ -14,7 +14,7 @@ exports.signup = async (req, res) => {
 
         // Insert the user into the database
         const sql = 'INSERT INTO app_users (name, surname, email, password) VALUES (?, ?, ?, ?)';
-        db.query(sql, [name, surname, email, hash], (err, res) => {
+        db.query(sql, [name, surname, email, hash], (err, result) => {
             if (err) {
                 if (err.code === 'ER_DUP_ENTRY') {
                     return res.status(400).send('Email already exists');
@@ -22,7 +22,7 @@ exports.signup = async (req, res) => {
                 console.error(err);
                 return res.status(500).send('Error inserting data into the database');
             }
-            // Redirect to the signin page after successful signup
+            // Redirect to the sign-in page after successful signup
             res.redirect('/sign-in');
             console.log('User signed up and added to the database');
         });

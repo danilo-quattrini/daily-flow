@@ -2,8 +2,14 @@ const express = require('express');
 const router = express.Router();
 const authController = require('./auth-controller');
 
-// Route to redirect the root to the signup page
-router.get('/', (req, res) => res.redirect('/signup'));
+// Route to redirect the root to the signin page and check if the user is logged already or not
+router.get('/', (req, res) =>{
+    if (req.session.user_id) {
+        return res.redirect('/dashboard');
+    }else {
+        return res.redirect('/sign-in');
+    }
+});
 
 // Route to render the signup form
 router.get('/signup', (req, res) => res.render('signup'));

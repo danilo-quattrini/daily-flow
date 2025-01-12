@@ -1,5 +1,24 @@
 const moment = require("moment");  // Import the database connection
 const db = require('../config/db');
+
+// Get Habit Controller
+exports.getHabit = async (req, res) => {
+    const userId = req.session.user_id; // Ensure the user is logged in
+
+    if (!userId) {
+        return res.status(401).send('Unauthorized. Please log in.');
+    }
+
+    const sql = 'SELECT habit_id AS id, habit_name AS name, start_date AS time, progress FROM habits WHERE user_id = ? ORDER BY created_at DESC';
+    db.query(sql, [userId], (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Error getting habits');
+        }
+        res.status(200).json(result);
+    });
+};
+
 // Add Habit Controller
 exports.addHabit = async (req, res) => {
     const {name, frequency, startDate, time, progress} = req.body;
@@ -49,8 +68,6 @@ exports.deleteHabit = async (req, res) => {
             console.error('Delete Error:', err);
             return res.status(500).send('Error deleting habit');
         }
-
-        console.log('Delete Result:', result);
         res.status(200).send(result);
     });
 };
@@ -80,21 +97,3 @@ exports.updateHabit = async (req, res) => {
     });
 };
 */
-
-// Get Habit Controller
-exports.getHabit = async (req, res) => {
-    const userId = req.session.user_id; // Ensure the user is logged in
-
-    if (!userId) {
-        return res.status(401).send('Unauthorized. Please log in.');
-    }
-
-    const sql = 'SELECT habit_id AS id, habit_name AS name, start_date AS time, progress FROM habits WHERE user_id = ? ORDER BY created_at DESC';
-    db.query(sql, [userId], (err, result) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).send('Error getting habits');
-        }
-        res.status(200).json(result);
-    });
-};

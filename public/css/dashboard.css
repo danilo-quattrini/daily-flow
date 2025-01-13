@@ -27,12 +27,12 @@
 
 .sidebar nav ul {
     list-style: none;
-    margin-top: 560px;
+    margin-top: 580px;
     padding: 0;
 }
 
 .sidebar nav ul li {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .sidebar nav ul li a {

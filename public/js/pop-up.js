@@ -31,20 +31,22 @@ document.addEventListener('DOMContentLoaded', async () => {
         e.preventDefault();
         const formData = new FormData(newHabitForm);
         const habitData = Object.fromEntries(formData.entries());
-
+        const mode = newHabitForm.getAttribute('data-mode');
         try {
-            const response = await fetch('dashboard/add-habit', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(habitData),
-            });
-            if (!response.ok) throw new Error('Failed to add habit');
+            if (mode === 'add') {
+                const response = await fetch('dashboard/add-habit', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(habitData),
+                });
+                if (!response.ok) throw new Error('Failed to add habit');
 
-            const newHabit = await response.json();
-            addHabitToList(newHabit);
+                const newHabit = await response.json();
+                addHabitToList(newHabit);
 
-            newHabitForm.reset();
-            popupOverlay.classList.add('hidden');
+                popupOverlay.classList.add('hidden');
+                newHabitForm.reset();
+            }
         } catch (error) {
             console.error('Error adding habit:', error);
         }

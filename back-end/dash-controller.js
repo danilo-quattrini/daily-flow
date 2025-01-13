@@ -73,20 +73,19 @@ exports.deleteHabit = async (req, res) => {
 };
 
 // Update Habit Controller
-/*
 exports.updateHabit = async (req, res) => {
     const habitId = req.params.id; // Retrieve id from params
-    const { name, frequency, startDate, progress, time } = req.body;
+    const { name, frequency, startDate, progress} = req.body;
     const userId = req.session.user_id; // Ensure the user is logged in
 
-    console.log('Update Habit:', { habitId, name, frequency, startDate, progress, time });
+    console.log('Update Habit:', { habitId, name, frequency, startDate, progress});
 
     if (!userId) {
         return res.status(401).send('Unauthorized. Please log in.');
     }
 
-    const sql = 'UPDATE habits SET habit_name = ?, frequency = ?, start_date = ?, progress = ?, time = ? WHERE habit_id = ? AND user_id = ?';
-    db.query(sql, [name, frequency, startDate, progress, time, habitId, userId], (err, result) => {
+    const sql = 'UPDATE habits SET habit_name = ?, frequency = ?, start_date = ?, progress = ? WHERE habit_id = ? AND user_id = ?';
+    db.query(sql, [name, frequency, startDate, progress, habitId, userId], (err, result) => {
         if (err) {
             console.error('Update Error:', err);
             return res.status(500).send('Error updating habit');
@@ -96,4 +95,4 @@ exports.updateHabit = async (req, res) => {
         res.status(200).send('Habit updated successfully');
     });
 };
-*/
+

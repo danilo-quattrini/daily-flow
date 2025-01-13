@@ -20,16 +20,15 @@ export async function deleteHabit(habitId) {
     }
 }
 
-/*
 export function openEditPopup(habit) {
     const popupOverlay = document.querySelector('.popup-overlay');
     const newHabitForm = document.getElementById('newHabitForm');
     const popupTitle = popupOverlay.querySelector('h1');
     const submitButton = document.querySelector('.submit-button');
-    const cancelButton = document.querySelector('.cancel-button');
+    const cancelButton = document.querySelector('.close-popup');
 
-    if (!popupOverlay || !newHabitForm || !popupTitle) {
-        console.error('Popup elements are missing.');
+    if (!popupOverlay || !newHabitForm || !popupTitle || !submitButton || !cancelButton) {
+        console.error('Popup elements are missing.', { popupOverlay, newHabitForm, popupTitle, submitButton, cancelButton });
         return;
     }
 
@@ -38,12 +37,12 @@ export function openEditPopup(habit) {
     popupTitle.textContent = 'Edit Habit';
     submitButton.textContent = 'Edit';
     cancelButton.textContent = 'Cancel';
+    newHabitForm.setAttribute('data-mode', 'edit');
 
     // Pre-fill the form
     newHabitForm.habitName.value = habit.name;
     newHabitForm.habitFrequency.value = habit.frequency;
-    newHabitForm.startDate.value = habit.startDate;
-    newHabitForm.time.value = habit.time;
+    newHabitForm.startDate.value = habit.time;
     newHabitForm.progress.value = habit.progress;
 
     // Attach a custom editing ID
@@ -54,26 +53,29 @@ export function openEditPopup(habit) {
         e.preventDefault();
         const formData = new FormData(newHabitForm);
         const updatedHabitData = Object.fromEntries(formData.entries());
-
+        const mode = newHabitForm.getAttribute('data-mode');
         try {
-            const response = await fetch(`/update-habit/${habit.id}`, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(updatedHabitData),
-            });
-            if (!response.ok) throw new Error('Failed to update habit');
+            // Update the habit only if is in the edit mode (not in the add mode)
+            if(mode === 'edit') {
+                const response = await fetch(`dashboard/update-habit/${habit.id}`, {
+                    method: 'PUT',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(updatedHabitData),
+                });
+                if (!response.ok) throw new Error('Failed to update habit');
 
-            const habitItem = document.querySelector(`.habit-item[data-id="${habit.id}"]`);
-            if (habitItem) {
-                habitItem.querySelector('.habit-title').textContent = updatedHabitData.name;
-                habitItem.querySelector('.habit-time').textContent = `Started At ${updatedHabitData.time}`;
+                const habitItem = document.querySelector(`.habit-item[data-id="${habit.id}"]`);
+                if (habitItem) {
+                    habitItem.querySelector('.habit-title').textContent = updatedHabitData.name;
+                    habitItem.querySelector('.habit-time').textContent = `Started At ${updatedHabitData.time}`;
+                }
+
+                popupOverlay.classList.add('hidden');
+                newHabitForm.reset();
             }
-
-            newHabitForm.reset();
-            popupOverlay.classList.add('hidden');
         } catch (error) {
             console.error('Error updating habit:', error);
             alert('Failed to update habit. Please try again.');
         }
     };
-}*/
+}

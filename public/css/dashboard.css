@@ -184,10 +184,13 @@
 }
 
 .habit-title {
+    font-size: 18px;
     font-weight: bold;
 }
 
 .habit-time {
+    font-size: 14px;
+    font-weight: lighter;
     color: #666;
 }
 

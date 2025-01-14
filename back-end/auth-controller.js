@@ -82,6 +82,8 @@ exports.logout = async (req, res) => {
       console.error(err);
       return res.status(500).json({ message: "Server error" });
     }
+    // Destroy the session cookie
+    res.clearCookie("connect.sid");
     return res.redirect("/sign-in");
   });
 };

@@ -5,19 +5,35 @@ document.addEventListener("DOMContentLoaded", async () => {
   const closePopupBtn = document.querySelector(".close-popup");
   const addHabitBtn = document.querySelector(".add-habit-button");
   const newHabitForm = document.getElementById("newHabitForm");
+  /*const deleteAccountBtn = document.querySelector(".delete-account-button");
+  const deletePopupOverlay = document.querySelector(".delete-popup-overlay");*/
 
   if (!popupOverlay || !closePopupBtn || !addHabitBtn || !newHabitForm) {
     console.error("One or more required elements are missing.");
     return;
   }
-
-  // Open and close popup logic
+  // Open and close popup logic for the habit
   addHabitBtn.addEventListener("click", () =>
     popupOverlay.classList.remove("hidden"),
   );
   closePopupBtn.addEventListener("click", () =>
     popupOverlay.classList.add("hidden"),
   );
+  // Close the popup when clicking outside the form
+  popupOverlay.addEventListener("click", (e) => {
+    if (e.target === popupOverlay) popupOverlay.classList.add("hidden");
+  });
+
+  /*// Logic for showing the pop up in the delete mode in the habit
+  deleteAccountBtn.addEventListener("click", () => {
+    deletePopupOverlay.classList.remove("hidden");
+  });
+  // Close pop-up when clicking outside the container
+  deletePopupOverlay.addEventListener("click", (e) => {
+    if (e.target === deletePopupOverlay) {
+      deletePopupOverlay.classList.add("hidden");
+    }
+  });*/
 
   // Fetch and display habits
   try {

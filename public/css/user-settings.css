@@ -1,0 +1,46 @@
+.settings-container {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.settings-header {
+    color: white;
+}
+.settings-main {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    margin: 20px;
+}
+
+.edit-user-section,
+.danger-zone-section {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.danger-zone-section h2 {
+    color: #dc3545;
+}
+
+.danger-zone-section p {
+    color: #6c757d;
+}
+
+.danger-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.danger-button:hover {
+    background-color: #c82333;
+}

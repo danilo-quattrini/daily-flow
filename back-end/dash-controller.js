@@ -1,4 +1,5 @@
-const moment = require("moment"); // Import the database connection
+const moment = require("moment");
+// Import the database connection
 const db = require("../config/db");
 
 // Get Habit Controller

@@ -1,11 +1,12 @@
 # daily-flow
+![image](public/img/svg/logo-to-show.svg)\
 Daily Flow is a habit-tracking application built with Node.js, Express, MySQL, and Pug. This README will guide you through the steps to install and set up the project on your local machine.
 ## Table of contents
 - [Prerequisites](#Prerequisites)
 - [Installation](#Installation)
-- [Database setup](#Database Setup)
-- [environment configuration](#Environment configuration)
-- [Running the application](#Running the application)
+- [Database Setup](#Database-Setup)
+- [Environment configuration](#Environment-configuration)
+- [Running the application](#Running-the-application)
 ## Prerequisites
 Ensure you have the following installed on your system:
 1.	**Node.js**: [Download here](https://nodejs.org/) (version 14+ recommended)
@@ -16,7 +17,7 @@ Ensure you have the following installed on your system:
 ## Installation
 1.	Clone the repository by running the following command in your terminal:
 ```bash
-git clone https://github.com/your-username/daily-flow.git
+git clone https://github.com/danilo-quattrini/daily-flow.git
 cd daily-flow
 ```
 2.	Install the project dependencies by running the following command:
@@ -25,18 +26,19 @@ npm install
 ```
 ---
 ## Database Setup
-1.	**Create a MySQL database**:
+1.	**Create a MySQL database**:\
 Open your MySQL client (e.g., MySQL Workbench, phpMyAdmin, or terminal) and import the daily_flow_db.sql file to set up the database structure.
 **Using MySQL CLI**: 
 ```bash
 mysql -u your_user -p your_password < models/daily_flow_db.sql
 ```
-Replace your_user and your_password with your MySQL credentials.
+Replace `your_user` and `your_password` with your MySQL credentials.
+
 Using MySQL Workbench:
 - Open Workbench and connect to your MySQL server. 
 - Go to the File > Run SQL Script option. 
 - Select the daily_flow_db.sql file and execute.
-2.	**Confirm the Database**:
+2.	**Confirm the Database**:\
 Ensure the database is created and includes tables such as app_users, habits, etc.
 ---
 ## Environment Configuration
@@ -61,12 +63,12 @@ Replace:
 - **(optional)** Change the SESSION_SECRET value to a random string.
 ---
 ## Running the Application
-1.	**Start the server**:
+1.	**Start the server**:\
 Run the following command to start the server:
 ```bash
 npm start
 ```
-2.	**Access the application**:
+2.	**Access the application**:\
 Open your browser and go to http://localhost:3000 to access the application.
 ---
 ## Note

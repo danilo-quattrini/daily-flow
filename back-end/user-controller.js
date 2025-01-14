@@ -57,6 +57,15 @@ exports.deleteUser = async (req, res) => {
           res.redirect("/signup");
         });
       });
+
+      // Delete all habits associated with the user
+      const deleteHabitSql = "DELETE FROM habits WHERE user_id = ?";
+      db.query(deleteHabitSql, [userId], (err) => {
+        if (err) {
+          console.error(err);
+          return res.status(500).send("Error deleting habit.");
+        }
+      });
     });
   });
 };

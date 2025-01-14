@@ -6,7 +6,7 @@ html
         link(rel='stylesheet', href='../public/css/dashboard.css')
         link(rel='stylesheet', href='../public/css/pop-up.css')
         link(rel='stylesheet', href='../node_modules/bootstrap/dist/css/bootstrap.css')
-        link(rel='icon', type='image/x-icon', href='../public/img/web-site-icon.ico')
+        link(rel='icon', type='image/x-icon', href='../public/img/svg/web-site-icon.svg')
 
     body
         div(class='dashboard-container')
@@ -31,7 +31,8 @@ html
                         h1 Welcome Back!
                     div(class='header-right')
                         img(src='../public/img/svg/notification.svg', alt='notification icon', class='icon')
-                        img(src='../public/img/svg/setting.svg', alt='settings icon', class='icon')
+                        a(href='/user-settings')
+                            img(src='../public/img/svg/setting.svg', alt='settings icon', class='icon')
                         img(src='../public/img/svg/profile.svg', alt='profile icon', class='profile-pict')
 
 

@@ -27,12 +27,12 @@
 
 .sidebar nav ul {
     list-style: none;
-    margin-top: 560px;
+    margin-top: 580px;
     padding: 0;
 }
 
 .sidebar nav ul li {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .sidebar nav ul li a {
@@ -78,14 +78,22 @@
 
 .header-right .icon {
     margin-right: 15px;
-    width: 32px;
+    width: 26px;
     height: 32px;
     cursor: pointer;
 }
 
 .header-right .profile-pict {
     width: 34px;
-    height: 34px;
+    height: 32px;
+}
+
+.header-right a img {
+    transition: transform 0.2s ease-in-out;
+}
+
+.header-right a img:hover {
+    transform: scale(1.1);
     cursor: pointer;
 }
 
